@@ -10,14 +10,15 @@ export default function Layout({ children }) {
     <>
       <Header />
       <div id="layoutSidenav">
-        <Sidebar/>
+        <Sidebar />
+        <div id="layoutSidenav_content">
+          <main>
+            {children}
+          </main>
+          <Footer />
+        </div>
       </div>
-      <div id="layoutSidenav_content">
-        <main>
-          {children}
-        </main>
-        <Footer />
-      </div>
+
     </>
   );
 }
