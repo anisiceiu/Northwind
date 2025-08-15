@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Northwind.Core.Entities;
 using Northwind.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Northwind.Infrastructure.Data
         public DbSet<Shipper> Shippers { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Territory> Territories { get; set; }
-
+        public DbSet<User> Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

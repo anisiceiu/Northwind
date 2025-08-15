@@ -20,7 +20,7 @@ namespace Northwind.Infrastructure.Extensions
         {
             var mapperConfig = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<CategoryProfile>();
+                cfg.AddProfile<MapperProfile>();
                 // Add more profiles here if needed
             });
 
@@ -30,14 +30,13 @@ namespace Northwind.Infrastructure.Extensions
             return services;
         }
 
-        public static IServiceCollection AddServices(this IServiceCollection services)
+        public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            // Specific service
-            services.AddScoped<ICategoryService, CategoryService>();
             return services;
         }
     }

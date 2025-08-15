@@ -1,12 +1,13 @@
 
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
+using Northwind.Api.Configuration;
 using Northwind.Application.Interfaces;
 using Northwind.Application.Services;
 using Northwind.Core.Interfaces;
-using AutoMapper;
-using Microsoft.EntityFrameworkCore;
 using Northwind.Infrastructure.Data;
-using Northwind.Infrastructure.Repositories;
 using Northwind.Infrastructure.Extensions;
+using Northwind.Infrastructure.Repositories;
 
 namespace Northwind.Api
 {
@@ -21,8 +22,11 @@ namespace Northwind.Api
             builder.Services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetConnectionString("NorthwindConnection")));
 
+            var appSettingsSection = builder.Configuration.GetSection("AppSettings");
+            builder.Services.Configure<AppSettings>(appSettingsSection);
+
             builder.Services.AddMappingProfiles();
-            builder.Services.AddServices();
+            builder.Services.AddApplicationServices();
 
             // Add this using directive
             builder.Services.AddControllers();

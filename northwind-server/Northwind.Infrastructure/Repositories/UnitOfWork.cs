@@ -1,4 +1,5 @@
-﻿using Northwind.Core.Interfaces;
+﻿using Northwind.Core.Entities;
+using Northwind.Core.Interfaces;
 using Northwind.Domain.Entities;
 using Northwind.Infrastructure.Data;
 using System;
@@ -18,10 +19,12 @@ namespace Northwind.Infrastructure.Repositories
             _context = context;
             CategoryRepository = new Repository<Category>(_context);
             ProductRepository = new Repository<Product>(_context);
+            AccountRepository = new Repository<User>(_context);
         }
 
         public IRepository<Category> CategoryRepository { get; }
         public IRepository<Product> ProductRepository { get; }
+        public IRepository<User> AccountRepository { get; }
 
         public async Task<int> CommitAsync()
         {
